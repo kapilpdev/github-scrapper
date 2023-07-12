@@ -3,26 +3,31 @@
 <h1>Users</h1>
 <%= link_to "New user", new_user_path %>
 
+<%= form_tag(users_path, method: :get) do %>
+  <%= text_field_tag :search, params[:search], placeholder: 'Search users...' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
 <div id="users">
   <table>
     <thead>
       <tr>
         <th>Avatar</th>
         <th>Username</th>
-        <th>Public respositories count</th>
+        <th>Public repositories count</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%=image_tag(url_for(user.avatar), width: 50, height: 50) if user.avatar.attached?%></td>
-          <td><%=user.username%></td>
-          <td><%=user.repositories_count%></td>
-          <td><%= link_to "show", user %></td>
+          <td><%= image_tag(url_for(user.avatar), width: 50, height: 50) if user.avatar.attached? %></td>
+          <td><%= user.username %></td>
+          <td><%= user.repositories_count %></td>
+          <td><%= link_to "Show", user %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
+<%= will_paginate @users%>
