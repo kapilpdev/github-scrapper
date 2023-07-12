@@ -2,12 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.paginate(page: params[:page], per_page: 5)
     @users = @users.where(username: params[:search]) if params[:search].present?
   end
 
   def show
-    @repositories = @user.repositories.paginate(page: params[:page], per_page: 10)
+    @repositories = Repository.search(@user, params[:search])
+    @repositories = @repositories.paginate(page: params[:page], per_page: 5)
   end
 
   def new

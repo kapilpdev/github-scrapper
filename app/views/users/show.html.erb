@@ -2,6 +2,11 @@
 
 <%= render @user %>
 
+<%= form_tag(user_path, method: :get) do %>
+  <%= text_field_tag :search, params[:search], placeholder: 'Search users by title language star count...' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
 <div id="repositories">
   <table>
     <thead>
@@ -10,8 +15,6 @@
         <th>url</th>
         <th>language</th>
         <th>Star count</th>
-        <th>Action</th>
-
       </tr>
     </thead>
     <tbody>
@@ -21,13 +24,15 @@
           <td><%=repository.url%></td>
           <td><%=repository.language%></td>
           <td><%=repository.star_count%></td>
-          <td><%#= link_to "show", user %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
 
+<%= will_paginate @repositories %>
+
 <div>
   <%= button_to "Destroy this user", @user, method: :delete %>
+  <%= link_to "Back to users", users_path %>
 </div>
