@@ -15,13 +15,13 @@
       </tr>
     </thead>
     <tbody>
-      <% @repositories&.each do |repository| %>
+      <% @repositories.each do |repository| %>
         <tr>
-          <td><%=repository.name%></td>
+          <td><%=repository.title%></td>
           <td><%=repository.url%></td>
           <td><%=repository.language%></td>
           <td><%=repository.star_count%></td>
-          <td><%= link_to "show", user %></td>
+          <td><%#= link_to "show", user %></td>
         </tr>
       <% end %>
     </tbody>
