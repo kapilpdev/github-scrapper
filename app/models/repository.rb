@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
+# app/models/repository.rb
 class Repository < ApplicationRecord
   belongs_to :user, counter_cache: true
 
-  def self.search(user, q)
-    if q.present?
+  def self.search(user, query)
+    if query.present?
       Repository.where(
-        "title ILIKE '%#{q.downcase}%'
-        OR language ILIKE '%#{q.downcase}%'
-        OR star_count ILIKE '%#{q.downcase}%'"
+        "title ILIKE '%#{query.downcase}%'
+        OR language ILIKE '%#{query.downcase}%'
+        OR star_count ILIKE '%#{query.downcase}%'"
       )
     else
       user.repositories

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# app/models/user.rb
 class User < ApplicationRecord
   validates :username, presence: true
 
@@ -15,7 +18,7 @@ class User < ApplicationRecord
     errors.add(:base, 'User not found on github') if response.include?('message')
     throw(:abort) if errors.any?
 
-    return true
+    true
   end
 
   def fetch_public_repositories

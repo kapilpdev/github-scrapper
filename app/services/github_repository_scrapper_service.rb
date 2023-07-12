@@ -8,12 +8,13 @@ class GithubRepositoryScrapperService
 
   def initialize(username)
     @username = username
-    @user = User.find_by(username: username)
+    @user = User.find_by(username:)
   end
 
   def call
     repo_hash = collect_repo_info.map do |repo|
-      { title: repo['name'], star_count: repo['stargazers_count'], language: repo['language'], url: repo['owner']['html_url'], avatar: repo['owner']['avatar_url'] }
+      { title: repo['name'], star_count: repo['stargazers_count'], language: repo['language'],
+        url: repo['owner']['html_url'], avatar: repo['owner']['avatar_url'] }
     end
 
     create_repository(repo_hash)
@@ -34,6 +35,6 @@ class GithubRepositoryScrapperService
 
     require 'open-uri'
     url = URI.open(repos_data.first[:avatar])
-    @user.avatar.attach(io: url  , filename: "image.jpg")
+    @user.avatar.attach(io: url, filename: 'image.jpg')
   end
 end
