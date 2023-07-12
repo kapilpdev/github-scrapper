@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<div id="repositories">
+  <table>
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>url</th>
+        <th>language</th>
+        <th>Star count</th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <% @repositories&.each do |repository| %>
+        <tr>
+          <td><%=repository.name%></td>
+          <td><%=repository.url%></td>
+          <td><%=repository.language%></td>
+          <td><%=repository.star_count%></td>
+          <td><%= link_to "show", user %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <%= link_to "Back to users", users_path %>
+
+  <%= button_to "Destroy this user", @user, method: :delete %>
+</div>
