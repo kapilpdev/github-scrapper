@@ -78,5 +78,5 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'pry-nav'
 gem 'bootstrap', '~> 5.1.3'
+gem 'pry-nav'

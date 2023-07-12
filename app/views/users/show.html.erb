@@ -1,14 +1,24 @@
 <p style="color: green"><%= notice %></p>
 
+<div class='row'>
+  <div class="col-6">
+    <%= form_tag(user_path, method: :get) do %>
+      <%= text_field_tag :search, params[:search], placeholder: 'Search users by title language star count...', class: "form-control" %>
+      <%= submit_tag 'Search', class: "btn btn-dark" %>
+    <% end %>
+  </div>
+</div>
+
 <%= render @user %>
 
-<%= form_tag(user_path, method: :get) do %>
-  <%= text_field_tag :search, params[:search], placeholder: 'Search users by title language star count...' %>
-  <%= submit_tag 'Search' %>
-<% end %>
+<div>
+  <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-danger" %>
+  <%= link_to "Back to users", users_path, class: "btn btn-dark" %>
+</div>
 
-<div id="repositories">
-  <table>
+
+<div id="repositories" class='mt-5'>
+  <table class="table table-responsive table-bordered">
     <thead>
       <tr>
         <th>name</th>
@@ -31,8 +41,3 @@
 </div>
 
 <%= will_paginate @repositories %>
-
-<div>
-  <%= button_to "Destroy this user", @user, method: :delete %>
-  <%= link_to "Back to users", users_path %>
-</div>

@@ -10,8 +10,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @repositories = Repository.search(@user, params[:search])
-    @repositories = @repositories.paginate(page: params[:page], per_page: 5)
+    repositories = Repository.search(@user, params[:search])
+    @repositories = repositories.paginate(page: params[:page], per_page: 5)
   end
 
   def new
