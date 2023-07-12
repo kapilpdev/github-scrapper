@@ -12,12 +12,17 @@ class GithubRepositoryScrapperService
   end
 
   def call
+    user_avatar_url = nil
     repo_hash = collect_repo_info.map do |repo|
-      { title: repo['name'], star_count: repo['stargazers_count'], language: repo['language'],
-        url: repo['owner']['html_url'], avatar: repo['owner']['avatar_url'] }
+      user_avatar_url = repo['owner']['avatar_url'] || repo['owner']['gravatar_url']
+      {
+        title: repo['name'], star_count: repo['stargazers_count'],
+        language: repo['language'], url: repo['owner']['html_url']
+      }
     end
 
     create_repository(repo_hash)
+    update_user_avatar(user_avatar_url) if user_avatar_url
   end
 
   def collect_repo_info
@@ -32,9 +37,9 @@ class GithubRepositoryScrapperService
       repo.update(star_count: data[:star_count], language: data[:language], url: data[:url])
       repo.save!
     end
+  end
 
-    require 'open-uri'
-    url = URI.open(repos_data.first[:avatar])
-    @user.avatar.attach(io: url, filename: 'image.jpg')
+  def update_user_avatar(url)
+    @user.update(avatar: url)
   end
 end

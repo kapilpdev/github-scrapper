@@ -1,12 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Users</h1>
-<%= link_to "New user", new_user_path %>
-
 <%= form_tag(users_path, method: :get) do %>
   <%= text_field_tag :search, params[:search], placeholder: 'Search users...' %>
   <%= submit_tag 'Search' %>
 <% end %>
+
+<h1>Users</h1>
+<%= link_to "New user", new_user_path %>
 
 <div id="users">
   <table>
@@ -21,7 +21,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= image_tag(url_for(user.avatar), width: 50, height: 50) if user.avatar.attached? %></td>
+          <td><img src="<%= user.avatar %>" width=50 height=50/></td>
           <td><%= user.username %></td>
           <td><%= user.repositories_count %></td>
           <td><%= link_to "Show", user %></td>

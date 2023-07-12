@@ -5,7 +5,6 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   has_many :repositories, dependent: :destroy
-  has_one_attached :avatar
 
   before_create :validate_github_user
   after_create :fetch_public_repositories
