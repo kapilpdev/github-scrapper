@@ -12,7 +12,9 @@ class User < ApplicationRecord
   private
 
   def validate_github_user
-    url = "https://api.github.com/users/#{username}/repos"
+    return true if User.find_by(username:)
+
+    url = "https://api.github.com/users/#{username}/repos?per_page=500"
     response = HTTParty.get(url)
     errors.add(:base, 'User not found on github') if response.include?('message')
     raise ActiveRecord::RecordInvalid, self if errors[:base].any?
@@ -21,6 +23,6 @@ class User < ApplicationRecord
   end
 
   def fetch_public_repositories
-    GenerateRepositoriesJob.perform_now(username)
+    GenerateRepositoriesJob.perform_now(id)
   end
 end

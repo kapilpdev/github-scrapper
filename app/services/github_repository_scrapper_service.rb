@@ -2,13 +2,10 @@
 
 # app/services/github_repository_scrapper_service.rb
 class GithubRepositoryScrapperService
-  attr_accessor :username
-
   BASE_URL = 'https://api.github.com'
 
-  def initialize(username)
-    @username = username
-    @user = User.find_by(username:)
+  def initialize(id)
+    @user = User.find(id)
   end
 
   def call
@@ -21,12 +18,12 @@ class GithubRepositoryScrapperService
       }
     end
 
-    create_repository(repo_hash)
+    create_repository(repo_hash) if @user.repositories_count.to_i < repo_hash.size
     update_user_avatar(user_avatar_url) if user_avatar_url
   end
 
   def collect_repo_info
-    url = BASE_URL + "/users/#{username}/repos"
+    url = BASE_URL + "/users/#{@user.username}/repos?per_page=500"
     response = HTTParty.get(url)
     JSON.parse(response.body)
   end

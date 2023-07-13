@@ -4,7 +4,7 @@
 class GenerateRepositoriesJob < ApplicationJob
   queue_as :default
 
-  def perform(username)
-    GithubRepositoryScrapperService.new(username).call
+  def perform(id)
+    GithubRepositoryScrapperService.new(id).call
   end
 end

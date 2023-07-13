@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   before do
-    stub_request(:get, 'https://api.github.com/users/rails/repos')
+    stub_request(:get, 'https://api.github.com/users/rails/repos?per_page=500')
       .with(
         headers: {
           'Accept' => '*/*',
@@ -416,7 +416,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'POST/create' do
     it 'creates the user' do
-      stub_request(:get, 'https://api.github.com/users/kapilpdev/repos')
+      stub_request(:get, 'https://api.github.com/users/kapilpdev/repos?per_page=500')
         .with(
           headers: {
             'Accept' => '*/*',
@@ -436,7 +436,7 @@ RSpec.describe UsersController, type: :controller do
     let(:user) { User.create(username: 'kapilpdev') }
 
     it 'show the user' do
-      stub_request(:get, 'https://api.github.com/users/kapilpdev/repos')
+      stub_request(:get, 'https://api.github.com/users/kapilpdev/repos?per_page=500')
         .with(
           headers: {
             'Accept' => '*/*',
@@ -456,7 +456,7 @@ RSpec.describe UsersController, type: :controller do
     let(:user) { User.create(username: 'kapilpdev') }
 
     it 'update the user' do
-      stub_request(:get, 'https://api.github.com/users/kapilpdev/repos')
+      stub_request(:get, 'https://api.github.com/users/kapilpdev/repos?per_page=500')
         .with(
           headers: {
             'Accept' => '*/*',

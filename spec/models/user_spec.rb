@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
 
     context 'when user is found on GitHub' do
       it 'does not add an error' do
-        stub_request(:get, 'https://api.github.com/users/testuser/repos')
+        stub_request(:get, 'https://api.github.com/users/testuser/repos?per_page=500')
           .to_return(status: 200, body: '[]')
 
         expect do
@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
 
     context 'when user is not found on GitHub' do
       it 'adds an error to the base' do
-        stub_request(:get, 'https://api.github.com/users/testuser/repos')
+        stub_request(:get, 'https://api.github.com/users/testuser/repos?per_page=500')
           .to_return(status: 404, body: '{"message":"Not Found"}')
 
         expect do

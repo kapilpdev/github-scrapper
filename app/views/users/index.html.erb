@@ -9,9 +9,13 @@
     </div>
   </nav>
 
-  <div class='pt-5'>
-    <h4>Users</h4>
-    <%= link_to "New user", new_user_path, class: "btn btn-outline-primary" %>
+  <div class='row pt-5'>
+    <div class="col-8">
+      <h1 class="float-left">Users</h1>
+    </div>
+    <div class="col-4">
+      <%= link_to "New user", new_user_path, class: "float-right btn btn-outline-primary" %>
+    </div>
   </div>
 
   <div id="users", class='pt-5'>
@@ -21,7 +25,7 @@
           <th>Avatar</th>
           <th>Username</th>
           <th>Public repositories count</th>
-          <th>Actions</th>
+          <th colspan=3>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -31,8 +35,8 @@
             <td><%= user.username %></td>
             <td><%= user.repositories_count %></td>
             <td>
-              <%= link_to "Show", user, class: "btn btn-outline-info" %>
-              <%= button_to "Destroy", user, method: :delete, class: "btn btn-outline-danger" %>
+              <%= link_to "Show", user, class: "btn btn-outline-success" %>
+              <%= button_to "Destroy", user, method: :delete, class: "mt-2 btn btn-outline-danger" %>
             </td>
           </tr>
         <% end %>
