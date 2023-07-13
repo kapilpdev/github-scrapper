@@ -1,13 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<div class='row'>
-  <div class="col-6">
-    <%= form_tag(user_path, method: :get) do %>
-      <%= text_field_tag :search, params[:search], placeholder: 'Search users by title language star count...', class: "form-control" %>
-      <%= submit_tag 'Search', class: "btn btn-dark" %>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <%= form_tag(user_path, method: :get, class: "d-flex") do %>
+      <%= text_field_tag :search, params[:search], placeholder: 'search by title, language, star count', class: "form-control me-2" %>
+      <%= submit_tag 'Search', class: "btn btn-outline-success" %>
     <% end %>
   </div>
-</div>
+</nav>
 
 <%= render @user %>
 

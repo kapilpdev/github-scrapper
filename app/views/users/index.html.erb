@@ -1,41 +1,42 @@
 <p style="color: green"><%= notice %></p>
-
-<div class="row">
-  <div class="col-6">
-    <%= form_tag(users_path, method: :get) do %>
-      <%= text_field_tag :search, params[:search], placeholder: 'Search users...', class: "form-control" %>
-      <%= submit_tag 'Search', class: "btn btn-dark" %>
-    <% end %>
-  </div>
-</div>
-
-<div>
-  <h1>Users</h1>
-  <%= link_to "New user", new_user_path, class: "btn btn-dark flaot-right" %>
-</div>
-
-<div id="users">
-  <table class="table table-responsive table-bordered">
-    <thead>
-      <tr>
-        <th>Avatar</th>
-        <th>Username</th>
-        <th>Public repositories count</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><img src="<%= user.avatar %>" width=50 height=50/></td>
-          <td><%= user.username %></td>
-          <td><%= user.repositories_count %></td>
-          <td><%= link_to "Show", user, class: "btn btn-dark" %></td>
-        </tr>
+<div class= 'container'>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <%= form_tag(users_path, method: :get, class: "d-flex") do %>
+        <%= text_field_tag :search, params[:search], placeholder: 'search', class: "form-control me-2" %>
+        <%= submit_tag 'Search', class: "btn btn-outline-success" %>
       <% end %>
-    </tbody>
-  </table>
-</div>
-<div>
-  <%= will_paginate @users %>
+    </div>
+  </nav>
+
+  <div>
+    <h1>Users</h1>
+    <%= link_to "New user", new_user_path, class: "btn btn-sm btn-dark flaot-right" %>
+  </div>
+
+  <div id="users">
+    <table class="table table-responsive table-bordered">
+      <thead>
+        <tr>
+          <th>Avatar</th>
+          <th>Username</th>
+          <th>Public repositories count</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><img src="<%= user.avatar %>" width=50 height=50/></td>
+            <td><%= user.username %></td>
+            <td><%= user.repositories_count %></td>
+            <td><%= link_to "Show", user, class: "btn btn-dark" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <%= will_paginate @users %>
+  </div>
 </div>
