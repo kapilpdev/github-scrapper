@@ -5,13 +5,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 5)
+    @users = User.paginate(page: params[:page], per_page: 10)
     @users = @users.where(username: params[:search]) if params[:search].present?
   end
 
   def show
-    repositories = Repository.search(@user, params[:search])
-    @repositories = repositories.paginate(page: params[:page], per_page: 5)
+    repositories = @user.repositories.order('star_count::integer DESC').search(@user, params[:search])
+    @repositories = repositories.paginate(page: params[:page], per_page: 10)
   end
 
   def new
