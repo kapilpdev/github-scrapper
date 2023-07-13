@@ -6,9 +6,9 @@ RSpec.describe Repository, type: :model do
   end
 
   describe '.search' do
-    user = User.create(username: "abc") 
-    repository1 = Repository.create(user: user, title: 'Test Repository', language: 'Ruby', star_count: 10) 
-    repository2 = Repository.create(user: user, title: 'Another Repository', language: 'JavaScript', star_count: 5) 
+    user = User.create(username: 'kapilpdev')
+    repository1 = Repository.create(user_id: '1', title: 'Test Repository', language: 'Ruby', star_count: 10)
+    repository2 = Repository.create(user_id: '1', title: 'Another Repository', language: 'JavaScript', star_count: 5)
 
     context 'when query is present' do
       it 'returns matching repositories' do
