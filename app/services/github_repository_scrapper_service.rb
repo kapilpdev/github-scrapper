@@ -17,7 +17,7 @@ class GithubRepositoryScrapperService
       user_avatar_url = repo['owner']['avatar_url'] || repo['owner']['gravatar_url']
       {
         title: repo['name'], star_count: repo['stargazers_count'],
-        language: repo['language'], url: repo['owner']['html_url']
+        language: repo['language'], url: repo['html_url']
       }
     end
 

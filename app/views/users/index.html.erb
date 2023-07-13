@@ -9,13 +9,13 @@
     </div>
   </nav>
 
-  <div>
-    <h1>Users</h1>
-    <%= link_to "New user", new_user_path, class: "btn btn-sm btn-dark flaot-right" %>
+  <div class='pt-5'>
+    <h4>Users</h4>
+    <%= link_to "New user", new_user_path, class: "btn btn-outline-primary" %>
   </div>
 
-  <div id="users">
-    <table class="table table-responsive table-bordered">
+  <div id="users", class='pt-5'>
+    <table class="table table-responsive table-bordered table table-striped">
       <thead>
         <tr>
           <th>Avatar</th>
@@ -30,7 +30,10 @@
             <td><img src="<%= user.avatar %>" width=50 height=50/></td>
             <td><%= user.username %></td>
             <td><%= user.repositories_count %></td>
-            <td><%= link_to "Show", user, class: "btn btn-dark" %></td>
+            <td>
+              <%= link_to "Show", user, class: "btn btn-outline-info" %>
+              <%= button_to "Destroy", user, method: :delete, class: "btn btn-outline-danger" %>
+            </td>
           </tr>
         <% end %>
       </tbody>
