@@ -1,6 +1,13 @@
 <div id="<%= dom_id user %>">
-  <p>
-    <strong>Username:</strong>
-    <%= user.username %>
-  </p>
+  <div class="card">
+    <div class="card-body">
+      <strong>Github User Info:</strong>
+      <img src="<%= user.avatar %>" width=50 height=50/>
+      <%= user.username %>
+      <div>
+        <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-outline-danger" %>
+        <%= link_to "Back to users", users_path, class: "btn btn-outline-dark" %>
+      </div>
+    </div>
+  </div>
 </div>

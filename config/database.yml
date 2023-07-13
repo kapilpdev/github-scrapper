@@ -3,9 +3,9 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
-  username: postgres
-  password: postgres
-  port: 5432
+  username: rails
+  password: rails
+  port: 5434
 
 development:
   <<: *default

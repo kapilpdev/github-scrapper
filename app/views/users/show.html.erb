@@ -25,18 +25,13 @@
       <% @repositories.each do |repository| %>
         <tr>
           <td><%=repository.title %></td>
-          <td><%=repository.url %></td>
+          <td><%=link_to repository.url, repository.url, target: "_blank" %></td>
           <td><%=repository.language %></td>
           <td><%=repository.star_count %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-</div>
-
-<div>
-  <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-outline-danger" %>
-  <%= link_to "Back to users", users_path, class: "btn btn-outline-dark" %>
 </div>
 
 <div class='pt-5'>
