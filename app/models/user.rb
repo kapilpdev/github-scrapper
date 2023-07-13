@@ -15,10 +15,11 @@ class User < ApplicationRecord
     url = "https://api.github.com/users/#{username}/repos"
     response = HTTParty.get(url)
     errors.add(:base, 'User not found on github') if response.include?('message')
-    throw(:abort) if errors.any?
+    raise ActiveRecord::RecordInvalid.new(self) if errors[:base].any?
 
     true
   end
+
 
   def fetch_public_repositories
     GenerateRepositoriesJob.perform_now(username)
