@@ -16,3 +16,11 @@
 # rspec
 
 1. `bundle exec rspec`
+
+
+## Docker Setup
+
+make sure you have docker and docker compose setup
+after that run the following command.
+
+1. `docker-compose up`
